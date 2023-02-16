@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
  * main - print out sizes pf data types in c
- *code by SHEDDY04
+ * code by SHEDDY04
  * return: 0
 */
 int main(void)
