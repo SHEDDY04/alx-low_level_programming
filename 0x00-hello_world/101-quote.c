@@ -1,4 +1,4 @@
-#include <stdi.h>
+#include <stdio.h>
 /**
  * main - print a C programming nit using printf and puts
  *
