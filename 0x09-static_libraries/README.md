@@ -1,1 +1,1 @@
-static libraries
+my static libraries
