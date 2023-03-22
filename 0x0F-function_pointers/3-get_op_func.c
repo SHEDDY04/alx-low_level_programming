@@ -1,24 +1,32 @@
 #include "3-calc.h"
-#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * get_op_func - get functio operator
- * @s: operator symbol
- * Return: num 1 operator num 2
- */
-int  (*get_op_func(char *s))(int, int)
+  * get_op_func - ...
+  * @s: ...
+  *
+  * Return: ...
+  */
+int (*get_op_func(char *s))(int, int)
 {
-	size_t i;
+	op_t ops[] = {
+	{ "+", op_add },
+	{ "-", op_sub },
+	{ "*", op_mul },
+	{ "/", op_div },
+	{ "%", op_mod },
+	{ NULL, NULL }
+	};
+	int i = 0;
 
-	int (*ptr_arr[])(int, int) = {op_add, op_sub, op_mul, op_div, op_mod};
-	char op[] = "+-*/%";
-
-	i = 0;
 	while (i < 5)
 	{
-		if (*s == op[i])
-			return (ptr_arr[i]);
+		if (strcmp(s, ops[i].op) == 0)
+			return (ops[i].f);
+
 		i++;
 	}
-	return (NULL);
+
+	return (0);
 }
