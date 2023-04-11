@@ -1,30 +1,29 @@
 #include "main.h"
-#include <stddef.h>
+#include <stddef>
 
 /**
- * print_binary - Prints the binary representation of a number.
- * @n: The number to print in binary.
+ * print_binary - Prints the binary representation of a number
+ * @n: The number to print in binary representation
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int mask = 1;
-	size_t bit_count = 0;
+    unsigned long int mask = 1;
+    int i;
 
-	mask = mask << (sizeof(unsigned long int) * 8 - 1);
+    /* Find the leftmost non-zero bit */
+    for (i = (sizeof(unsigned long int) * 8) - 1; i >= 0; i--)
+    {
+        if ((n >> i) & 1)
+            break;
+    }
 
-	while (mask > 0)
-	{
-		if ((n & mask) == mask)
-		{
-			_putchar('1');
-			bit_count++;
-		}
-		else if (bit_count > 0 || mask == 1)
-			_putchar('0');
-
-		mask = mask >> 1;
-	}
-
-	if (bit_count == 0)
-		_putchar('0');
+    /* Print each bit in the binary representation */
+    for (; i >= 0; i--)
+    {
+        if (n & (mask << i))
+            _putchar('1');
+        else
+            _putchar('0');
+    }
 }
+
