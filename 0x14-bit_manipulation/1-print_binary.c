@@ -1,29 +1,46 @@
 #include "main.h"
-#include <stddef.h>
-
 /**
- * print_binary - Prints the binary representation of a number
- * @n: The number to print in binary representation
+ * _power - calculate (base and power)
+ * @base: base of the expo.
+ * @pow: power of the expo.
+ * Return: value of base and power
+ */
+unsigned long int _power(unsigned int base, unsigned int pow)
+{
+	unsigned long int num;
+	unsigned int i;
+
+	num = 1;
+	for (i = 1; i <= pow; i++)
+		num *= base;
+	return (num);
+}
+/**
+ * print_binary - prints the binary rep.
+ * @n: num of prented
+ * Return: void
  */
 void print_binary(unsigned long int n)
 {
-    unsigned long int mask = 1;
-    int i;
+	unsigned long int dev, result;
+	char flag;
 
-    /* Find the leftmost non-zero bit */
-    for (i = (sizeof(unsigned long int) * 8) - 1; i >= 0; i--)
-    {
-        if ((n >> i) & 1)
-            break;
-    }
+	flag = 0;
+	dev = _power(2, sizeof(unsigned long int) * 8 - 1);
 
-    /* Print each bit in the binary representation */
-    for (; i >= 0; i--)
-    {
-        if (n & (mask << i))
-            _putchar('1');
-        else
-            _putchar('0');
-    }
+	while (dev != 0)
+	{
+		result = n & dev;
+		if (result == dev)
+		{
+			flag = 1;
+			_putchar('1');
+
+		}
+		else if (flag == 1 || dev == 1)
+		{
+			_putchar('0');
+		}
+		dev >>= 1;
+	}
 }
-
